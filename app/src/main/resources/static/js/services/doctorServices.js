@@ -1,8 +1,12 @@
+// doctorServices.js
 /*
   Import the base API URL from the config file
   Define a constant DOCTOR_API to hold the full endpoint for doctor-related actions
+*/
+import { API_BASE_URL } from "../config/config.js";
+const DOCTOR_API = API_BASE_URL + '/doctor';
 
-
+/*
   Function: getDoctors
   Purpose: Fetch the list of all doctors from the API
 
@@ -10,8 +14,33 @@
    Convert the response to JSON
    Return the 'doctors' array from the response
    If there's an error (e.g., network issue), log it and return an empty array
+*/
+export async function getDoctors() {
+	try {
+	  const response = await fetch(`${DOCTOR_API}`, {
+	    method: "GET",
+	    headers: {
+	      "Content-Type": "application/json",
+	    },
+	  });
 
+	  if (response.ok) {
+	    const data = await response.json();
+	    return data.doctors;
 
+	  } else {
+	    console.error("Failed to fetch doctors:", response.statusText);
+	    return { doctors: [] };
+
+	  }
+	} catch (error) {
+	  console.error("Error:", error);
+	  alert("Something went wrong!");
+	  return { doctors: [] };
+	}
+}
+
+/*
   Function: deleteDoctor
   Purpose: Delete a specific doctor using their ID and an authentication token
 
@@ -22,8 +51,28 @@
     - success: true if deletion was successful
     - message: message from the server
    If an error occurs, log it and return a default failure response
+*/
+export async function deleteDoctor(id, token) {
+  try {
+    const response = await fetch(`${DOCTOR_API}/${id}/${token}`,
+      {
+        method: "DELETE",
+      }
+    );
+    const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result.message);
+    }
+    return { success: response.ok, message: result.message }
+  }
+  catch (error) {
+    console.error("Error :: deleteDoctor :: ", error)
+    return { success: false, message: error.message }
+  }
+}
 
 
+/*
   Function: saveDoctor
   Purpose: Save (create) a new doctor using a POST request
 
@@ -38,8 +87,32 @@
 
    Catch and log errors
     - Return a failure response if an error occurs
+*/
+export async function saveDoctor(doctor, token) {
+  try {
+    const response = await fetch(`${DOCTOR_API}/${token}}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(doctor)
+      }
+    );
+    const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result.message);
+    }
+    return { success: response.ok, message: result.message }
+  }
+  catch (error) {
+    console.error("Error :: saveDoctor :: ", error)
+    return { success: false, message: error.message }
+  }
+}
 
 
+/*
   Function: filterDoctors
   Purpose: Fetch doctors based on filtering criteria (name, time, and specialty)
 
@@ -51,3 +124,27 @@
 
    Catch any other errors, alert the user, and return a default empty result
 */
+export async function filterDoctors(name, time, specialty) {
+  try {
+    const response = await fetch(`${DOCTOR_API}/${name}/${time}/${specialty}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+
+    } else {
+      console.error("Failed to fetch doctors:", response.statusText);
+      return { doctors: [] };
+
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Something went wrong!");
+    return { doctors: [] };
+  }
+}

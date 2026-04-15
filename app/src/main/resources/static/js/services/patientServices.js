@@ -85,7 +85,7 @@ export async function filterAppointments(condition, name, token) {
       return data;
 
     } else {
-      console.error("Failed to fetch doctors:", response.statusText);
+      console.error("Failed to fetch appointments:", response.statusText);
       return { appointments: [] };
 
     }

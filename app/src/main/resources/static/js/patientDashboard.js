@@ -102,7 +102,7 @@ window.signupPatient = async function () {
     console.error("Signup failed:", error);
     alert("❌ An error occurred while signing up.");
   }
-};
+}
 
 window.loginPatient = async function () {
   try {
