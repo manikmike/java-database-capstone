@@ -1,23 +1,14 @@
 package com.project.back_end.repo;
 
-public interface AdminRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-    // 1. Extend JpaRepository:
-//    - The repository extends JpaRepository<Admin, Long>, which gives it basic CRUD functionality.
-//    - The methods such as save, delete, update, and find are inherited without the need for explicit implementation.
-//    - JpaRepository also includes pagination and sorting features.
+import com.project.back_end.models.Admin;
 
-// Example: public interface AdminRepository extends JpaRepository<Admin, Long> {}
-
-// 2. Custom Query Method:
-//    - **findByUsername**:
-//      - This method allows you to find an Admin by their username.
-//      - Return type: Admin
-//      - Parameter: String username
-//      - It will return an Admin entity that matches the provided username.
-//      - If no Admin is found with the given username, it returns null.
-
-// Example: public Admin findByUsername(String username);
+// 1. Extend JpaRepository:
+//- The repository extends JpaRepository<Admin, Long>, which gives it basic CRUD functionality.
+//- The methods such as save, delete, update, and find are inherited without the need for explicit implementation.
+//- JpaRepository also includes pagination and sorting features.
 
 // 3. Add @Repository annotation:
 //    - The @Repository annotation marks this interface as a Spring Data JPA repository.
@@ -26,5 +17,17 @@ public interface AdminRepository {
 
 // Example: @Repository
 //          public interface AdminRepository extends JpaRepository<Admin, Long> { ... }
+@Repository
+public interface AdminRepository extends JpaRepository<Admin, Long>{
 
+	// 2. Custom Query Method:
+	//    - **findByUsername**:
+	//      - This method allows you to find an Admin by their username.
+	//      - Return type: Admin
+	//      - Parameter: String username
+	//      - It will return an Admin entity that matches the provided username.
+	//      - If no Admin is found with the given username, it returns null.
+
+	// Example: public Admin findByUsername(String username);
+	public Admin findByUsername(String username);
 }

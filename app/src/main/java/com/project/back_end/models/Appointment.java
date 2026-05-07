@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import com.project.back_end.DTO.AppointmentDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -115,6 +117,12 @@ public class Appointment {
 		this.patient = patient;
 		this.appointmentTime = appointmentTime;
 		this.status = status;
+	}
+	
+	public AppointmentDTO toDTO()
+	{
+		return new AppointmentDTO(id, doctor.getId(), doctor.getName(), patient.getId(), patient.getName(), 
+				patient.getEmail(), patient.getPhone(), patient.getAddress(), appointmentTime, status);
 	}
 
 	// 10. Getters and Setters:

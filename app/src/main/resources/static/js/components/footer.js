@@ -11,11 +11,11 @@ export function renderFooter() {
 /*
   1. Insert Footer HTML Content
 
-     * The content is inserted into the `footer` element with the ID "footer" using `footer.innerHTML`.
+     * The content is inserted into the `footer` element with the ID "footer" using `footerContent`.
      * This is done dynamically via JavaScript to ensure that the footer is properly rendered across different pages.
 */
 	const footer = document.getElementById("footer");
-	footer.innerHTML = '';
+	let footerContent = '';
 
 /*
   2. Create the Footer Wrapper
@@ -25,7 +25,7 @@ export function renderFooter() {
        <footer class="footer">
        ```
 */
-  footer.innerHTML += '<footer class="footer">';
+  footerContent += '<footer class="footer">';
 
 
 /*
@@ -36,7 +36,7 @@ export function renderFooter() {
        <div class="footer-container">
        ```
 */
-	footer.innerHTML += '<div class="footer-container">';
+	footerContent += '<div class="footer-container">';
 
 /*
   4. Add the Hospital Logo and Copyright Info
@@ -51,7 +51,7 @@ export function renderFooter() {
        </div>
        ```
 */
-	footer.innerHTML += `
+	footerContent += `
 		<div class="footer-logo">
 	  		<img src="../assets/images/logo/logo.png" alt="Hospital CMS Logo">
 	  		<p>© Copyright 2025. All Rights Reserved by Hospital CMS.</p>
@@ -64,7 +64,7 @@ export function renderFooter() {
      * A `footer-links` div contains all the links grouped into three sections: Company, Support, and Legals.
      * This structure helps to organize the footer content and makes it easier for users to find related links.
 */
-	footer.innerHTML += '<div class="footer-links">';
+	footerContent += '<div class="footer-links">';
 
 /*
 
@@ -81,7 +81,7 @@ export function renderFooter() {
        </div>
        ```
 */
-	footer.innerHTML += `
+	footerContent += `
 		<div class="footer-column">
 		  <h4>Company</h4>
 		  <a href="#">About</a>
@@ -103,7 +103,7 @@ export function renderFooter() {
        </div>
        ```
 */
-	footer.innerHTML += `
+	footerContent += `
 		<div class="footer-column">
 		  <h4>Support</h4>
 		  <a href="#">Account</a>
@@ -125,14 +125,15 @@ export function renderFooter() {
        </div>
        ```
 */
-	footer.innerHTML += `
+	footerContent += `
 	<div class="footer-column">
 	  <h4>Legals</h4>
 	  <a href="#">Terms & Conditions</a>
 	  <a href="#">Privacy Policy</a>
 	  <a href="#">Licensing</a>
-	</div>`
-	footer.innerHTML += '</div> <!-- End of footer-links -->';
+	</div>`;
+	
+	footerContent += '</div> <!-- End of footer-links -->';
 
 /*
   9. Close the Footer Container
@@ -142,7 +143,7 @@ export function renderFooter() {
        </div> <!-- End of footer-container -->
        ```
 */
-	footer.innerHTML += '</div> <!-- End of footer-container -->';
+	footerContent += '</div> <!-- End of footer-container -->';
 
 /*
   10. Close the Footer Element
@@ -152,13 +153,15 @@ export function renderFooter() {
        </footer>
        ```
 */
-	footer += '</footer>';
+	footerContent += '</footer>';
 
 /*
   11. Footer Rendering Complete
 
-     * The `footer.innerHTML` code completes the dynamic rendering of the footer by injecting the structured HTML content into the `footer` element on the page.
+     * The `footerContent` code completes the dynamic rendering of the footer by injecting the structured HTML content into the `footer` element on the page.
 */
+    window.alert(footerContent);
+	footer.innerHTML = footerContent;
 }
 
 /*

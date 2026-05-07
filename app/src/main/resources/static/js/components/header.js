@@ -1,6 +1,5 @@
 // header.js
-
-import { openModal } from 'modal.js';
+import { openModal } from './modals.js';
 
 /*
   Step-by-Step Explanation of Header Section Rendering

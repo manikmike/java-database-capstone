@@ -72,8 +72,8 @@ and triggers modal-based login functionality.
 -->
   <script src="./js/util.js" defer></script>
   <script src="./js/render.js" defer></script>
-  <script src="./js/components/header.js" defer></script>
-  <script src="./js/components/footer.js" defer></script>
+  <script type="module" src="./js/components/header.js" defer></script>
+  <script type="module" src="./js/components/footer.js" defer></script>
 <!--      
 10. Close the Head and Open the Body
 
@@ -86,7 +86,7 @@ and triggers modal-based login functionality.
 
     * Add a main container to hold all page elements and apply layout constraints.
 -->
-  <main>
+  <div class="container">
 <!--
 12. Use a Wrapper for Structure
 
@@ -98,7 +98,7 @@ and triggers modal-based login functionality.
 
     * Add a `div` that will be dynamically filled by JavaScript with the site’s header.
 -->
-      <div class="header"></div>
+      <div id="header" class="header"></div>
 <!--
 14. Define the Main Section
 
@@ -126,7 +126,7 @@ and triggers modal-based login functionality.
 
     * Add a `div` that will be dynamically filled by JavaScript with the site’s footer.
 -->
-      <div class="footer"></div>
+      <div id="footer"></div>
 <!--
 18. Create a Modal Structure
 
@@ -144,7 +144,7 @@ and triggers modal-based login functionality.
     * Ensure it’s deferred so it doesn’t block HTML rendering.
 -->
     </div>
-  </main>
+  </div>
   <script type="module" src="./js/services/index.js" defer></script>
 <!--
 20. Close the Body and HTML Tags
