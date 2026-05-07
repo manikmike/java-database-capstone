@@ -160,8 +160,7 @@ export function renderFooter() {
 
      * The `footerContent` code completes the dynamic rendering of the footer by injecting the structured HTML content into the `footer` element on the page.
 */
-    window.alert(footerContent);
-	footer.innerHTML = footerContent;
+ 	footer.innerHTML = footerContent;
 }
 
 /*
