@@ -90,7 +90,7 @@ public class PatientController {
 	//    - Delegates authentication to the `validatePatientLogin` method in the shared service.
 	//    - Returns a response with a token or an error message depending on login success.
 	@PostMapping("/login")
-	public ResponseEntity<Map<String, String>> login(Login login) {
+	public ResponseEntity<Map<String, String>> login(@RequestBody Login login) {
 		return service.validatePatientLogin(login);
 	}
 

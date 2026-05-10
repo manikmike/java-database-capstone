@@ -1,13 +1,13 @@
 // util.js
-  function setRole(role) {
+  export function setRole(role) {
     localStorage.setItem("userRole", role);
   }
   
-  function getRole() {
+  export function getRole() {
     return localStorage.getItem("userRole");
   }
   
-  function clearRole() {
+  export function clearRole() {
     localStorage.removeItem("userRole");
   }
   

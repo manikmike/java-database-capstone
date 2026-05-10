@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -91,7 +92,7 @@ public class Doctor {
 //      - Represents the available times for the doctor in a list of time slots.
 //      - Each time slot is represented as a string (e.g., "09:00-10:00", "10:00-11:00").
 //      - The @ElementCollection annotation ensures that the list of time slots is stored as a separate collection in the database.
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> availableTimes;
 
 // 8. Getters and Setters:

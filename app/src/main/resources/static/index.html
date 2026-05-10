@@ -65,13 +65,13 @@ and triggers modal-based login functionality.
    * Use the `defer` attribute so they load after the HTML is parsed.
 
    HINT:
-      `<script src="./js/util.js" defer></script>`
-      `<script src="./js/render.js" defer></script>`
-      `<script src="./js/components/header.js" defer></script>`
-      `<script src="./js/components/footer.js" defer></script>`
+      `<script type="module" src="./js/util.js" defer></script>`
+      `<script type="module" src="./js/render.js" defer></script>`
+      `<script type="module" src="./js/components/header.js" defer></script>`
+      `<script type="module" src="./js/components/footer.js" defer></script>`
 -->
-  <script src="./js/util.js" defer></script>
-  <script src="./js/render.js" defer></script>
+  <script type="module" src="./js/util.js" defer></script>
+  <script type="module" src="./js/render.js" defer></script>
   <script type="module" src="./js/components/header.js" defer></script>
   <script type="module" src="./js/components/footer.js" defer></script>
 <!--      
@@ -117,9 +117,9 @@ and triggers modal-based login functionality.
     * Create buttons for each role: Admin, Patient, and Doctor.
     * Assign unique identifiers or `onclick` handlers to them as needed.
 -->
-        <button id="Admin">Admin</button>
-        <button id="Patient">Patient</button>
-        <button id="Doctor">Doctor</button>
+        <button id="adminLogin">Admin</button>
+        <button onclick="selectRole('patient')">Patient</button>
+        <button id="doctorLogin">Doctor</button>
       </main>
 <!--
 17. Insert a Footer Placeholder
@@ -133,9 +133,11 @@ and triggers modal-based login functionality.
     * Add a modal overlay for popups (like login forms).
     * Include a close button and an inner container for dynamic content.
 -->
-      <div id="modal" class=modal>
-        <button id="closeModal">Close</button>
-        <div id="modal-body"></div>
+      <div id="modal" class="modal">
+          <div class="modal-content">
+              <span class="close" id="closeModal">&times;</span>
+              <div id="modal-body"></div>
+          </div>
       </div>
 <!--
 19. Load Page-Specific Logic Module

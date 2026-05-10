@@ -1,4 +1,7 @@
 // modals.js
+import { adminLoginHandler } from "../services/index.js";
+import { doctorLoginHandler } from "../services/index.js";
+
 export function openModal(type) {
   let modalContent = '';
   if (type === 'addDoctor') {

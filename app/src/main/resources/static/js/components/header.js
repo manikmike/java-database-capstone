@@ -1,5 +1,6 @@
 // header.js
 import { openModal } from './modals.js';
+import { selectRole } from '../render.js';
 
 /*
   Step-by-Step Explanation of Header Section Rendering
@@ -137,7 +138,7 @@ export function renderHeader() {
 	else if (role === "admin") {
 	  headerContent += `
 	    <button id="addDocBtn" class="adminBtn" onclick="openModal('addDoctor')">Add Doctor</button>
-	    <a href="#" onclick="logout()">Logout</a>`;
+		<a href="#" onclick="logout()">Logout</a>`;
 	} else if (role === "doctor") {
 	  headerContent += `
 	    <button class="adminBtn"  onclick="selectRole('doctor')">Home</button>
@@ -197,20 +198,25 @@ function attachHeaderButtonListeners(role) {
 /*
   14. **logout**: Removes user session data and redirects the user to the root page.
 */
-function logout() {
+export function logout() {
 	localStorage.removeItem("userRole");
 	window.location.href = "/";   // or a specific login page
 	return;
 }
 
+window.logout = logout;
+
 /*
   15. **logoutPatient**: Removes the patient's session token and redirects to the patient dashboard.
 */
-function logoutPatient() {
+export function logoutPatient() {
 	localStorage.removeItem("token");
-	window.location.href = "/patientDashboard.html";   // or a specific login page
+	localStorage.setItem("userRole", "patient");
+	window.location.href = "/pages/patientDashboard.html";   // or a specific login page
 	return;	
 }
+
+window.logoutPatient = logoutPatient;
   
 /*
   16. **Render the Header**: Finally, the `renderHeader()` function is called to initialize the header rendering process when the page loads.

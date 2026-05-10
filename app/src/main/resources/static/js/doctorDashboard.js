@@ -5,6 +5,7 @@
 */
 import { getAllAppointments } from './services/appointmentRecordService.js';
 import { createPatientRow } from './components/patientRows.js';
+import { renderContent } from './render.js';
 
 // Get the table body where patient rows will be added
 const tableBody = document.getElementById("patientTableBody");

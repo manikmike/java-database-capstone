@@ -22,6 +22,7 @@ document.getElementById('addDocBtn').addEventListener('click', () => {
     - Call loadDoctorCards() to fetch and display all doctors
 */
 window.onload = function() {
+	document.getElementById('modal').style.display = 'none';
 	loadDoctorCards();
 }
 
@@ -123,7 +124,7 @@ function renderDoctorCards(doctors) {
   Function: adminAddDoctor
   Purpose: Collect form data and add a new doctor to the system
 */
-window.adminAddDoctor() = async function() {
+window.adminAddDoctor = async function() {
     try {
         // Collect input values from the modal form
         // - Includes name, email, phone, password, specialty, and available times

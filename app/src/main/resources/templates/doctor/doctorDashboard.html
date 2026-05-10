@@ -65,13 +65,13 @@ This file defines the Doctor Dashboard interface, allowing doctors to view and m
      - `header.js` and `footer.js` – Dynamically inject header/footer.
      - `doctorDashboard.js` – Contains dashboard logic for doctor functionality, loaded as a module.
 -->
-  <script th:src="@{/js/render.js}" defer></script>
-  <script th:src="@{/js/util.js}" defer></script>
-  <script th:src="@{/js/components/header.js}" defer></script>
-  <script th:src="@{/js/components/footer.js}" defer></script>
-  <script th:src="@{/js/components/patientRows.js}" defer></script>
-  <script th:src="@{/js/services/patientServices.js}" defer></script>
-  <script th:src="@{/js/doctorDashboard.js}" defer></script>
+  <script type="module" th:src="@{/js/render.js}" defer></script>
+  <script type="module" th:src="@{/js/util.js}" defer></script>
+  <script type="module" th:src="@{/js/components/header.js}" defer></script>
+  <script type="module" th:src="@{/js/components/footer.js}" defer></script>
+  <script type="module" th:src="@{/js/components/patientRows.js}" defer></script>
+  <script type="module" th:src="@{/js/services/patientServices.js}" defer></script>
+  <script type="module" th:src="@{/js/doctorDashboard.js}" defer></script>
 <!--
 10. Close the Head and Begin the Body
 
@@ -138,7 +138,7 @@ This file defines the Doctor Dashboard interface, allowing doctors to view and m
               <th>Prescription</th>
             </tr>
           </thead>
-          <tbody id="tableBody">
+          <tbody id="patientTableBody">
           </tbody>
         </table>
       </div>

@@ -136,7 +136,7 @@ public class DoctorController {
 	//    - Accepts a validated `Login` DTO containing credentials.
 	//    - Delegates authentication to the `DoctorService` and returns login status and token information.
 	@PostMapping("/login")
-	public ResponseEntity<Map<String, String>> doctorLogin(Login login) {
+	public ResponseEntity<Map<String, String>> doctorLogin(@RequestBody Login login) {
 		return doctorService.validateDoctor(login);
 	}
 
