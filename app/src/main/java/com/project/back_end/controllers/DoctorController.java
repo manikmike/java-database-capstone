@@ -207,9 +207,9 @@ public class DoctorController {
 
 	// 9. Define the `filter` Method:
 	//    - Handles HTTP GET requests to filter doctors based on name, time, and specialty.
-	//    - Accepts `name`, `time`, and `speciality` as path variables.
+	//    - Accepts `name`, `time`, and `specialty` as path variables.
 	//    - Calls the shared `Service` to perform filtering logic and returns matching doctors in the response.
-	@GetMapping("/filter/{name}/{time}/{speciality}")
+	@GetMapping("/filter/{name}/{time}/{specialty}")
 	public ResponseEntity<Map<String, Object>> filter(@PathVariable String name, @PathVariable String time, @PathVariable String specialty) {
 		Map<String, Object> response = new HashMap<>();
 		try {

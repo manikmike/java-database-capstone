@@ -104,6 +104,9 @@ public class Service {
 	// - If none of the filters are provided, it returns all available doctors.
 	// This flexible filtering mechanism allows the frontend or consumers of the API to search and narrow down doctors based on user criteria.
 	public Map<String, Object> filterDoctor(String name, String specialty, String time) {
+		if (name.equals("null")) name = null;
+		if (specialty.equals("null")) specialty = null;
+		if (time.equals("null")) time = null;
 		if (name != null && specialty != null && time != null) {
 			return doctorService.filterDoctorsByNameSpecialtyAndTime(name, specialty, time);
 		}

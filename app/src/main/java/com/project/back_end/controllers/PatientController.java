@@ -99,9 +99,9 @@ public class PatientController {
 	//    - Requires the patient ID, token, and user role as path variables.
 	//    - Validates the token using the shared service.
 	//    - If valid, retrieves the patient's appointment data from `PatientService`; otherwise, returns a validation error.
-	@GetMapping("/{id}/{token}")
-	public ResponseEntity<Map<String, Object>> getPatientAppointment(@PathVariable long id, String token) {
-		if (tokenService.validateToken(token, "patient")) {
+	@GetMapping("/{id}/{role}/{token}")
+	public ResponseEntity<Map<String, Object>> getPatientAppointment(@PathVariable long id, @PathVariable String role, @PathVariable String token) {
+		if (tokenService.validateToken(token, role)) {
 			return patientService.getPatientAppointment(id, token);
 		}
 		else {

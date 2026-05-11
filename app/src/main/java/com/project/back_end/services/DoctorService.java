@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import com.project.back_end.models.Doctor;
 import com.project.back_end.repo.AppointmentRepository;
 import com.project.back_end.repo.DoctorRepository;
 
+import io.jsonwebtoken.lang.Arrays;
 import jakarta.transaction.Transactional;
 
 //1. **Add @Service Annotation**:
@@ -218,6 +220,21 @@ public class DoctorService {
 		}
 		return filteredDoctors;
 	}
+	
+	private List<Doctor> filterDoctorByExactTime(List<Doctor> doctors, String time) {
+		List<Doctor> filteredDoctors = new ArrayList<>();
+		for (Doctor doc : doctors) {
+			List<String> times = doc.getAvailableTimes();
+			for (String t : times) {
+				if (t.equals(time)) {
+					filteredDoctors.add(doc);
+					break;
+				}
+			}
+		}
+		return filteredDoctors;
+	}
+	
 
 	// 13. **filterDoctorByNameAndTime Method**:
 	//    - Filters doctors based on their name and the specified time period (AM/PM).
@@ -249,10 +266,11 @@ public class DoctorService {
 	//    - Fetches doctors based on the specified specialty and filters them based on their available time slots for AM/PM.
 	//    - Instruction: Ensure the time filtering is accurately applied based on the given specialty and time period (AM/PM).
 	@Transactional
-	public Map<String, Object> filterDoctorByTimeAndSpecialty(String specialty, String amOrPm) {
+	public Map<String, Object> filterDoctorByTimeAndSpecialty(String specialty, String time) {
 		Map<String, Object> doctorsMap = new HashMap<>();
 		List<Doctor> doctors = doctorRepository.findBySpecialtyIgnoreCase(specialty);
-		doctors = filterDoctorByTime(doctors, amOrPm);
+		System.out.println(doctors);
+		doctors = filterDoctorByExactTime(doctors, time);
 		doctorsMap.put("doctors", doctors);
 		return doctorsMap;
 	}
